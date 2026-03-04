@@ -7,3 +7,5 @@ Built with a production-style backend architecture using Express, MongoDB, and E
 A full-stack web application inspired by Airbnb that allows users to create, explore, update, and review travel property listings.
 
 Built with a production-style backend architecture using Express, MongoDB, and EJS, including validation, error handling, and relational data modeling.
+
+MVC framework is used.
