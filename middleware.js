@@ -40,10 +40,10 @@ module.exports.isOwner = async (req, res, next) => {
 };
 
 module.exports.validateListing = (req, res, next) => {
-  let result = listingSchema.validate(req.body);
+  let { error } = listingSchema.validate(req.body.listing);
 
-  if (result.error) {
-    let errMsg = result.error.details.map(el => el.message).join(",");
+  if (error) {
+    let errMsg = error.details.map(el => el.message).join(",");
     throw new ExpressError(400, errMsg);
   } else {
     next();

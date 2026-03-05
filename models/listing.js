@@ -29,12 +29,25 @@ const listingSchema = new Schema({
   price: Number,
   location: String,
   country: String,
+
+  // ⭐ ADD THIS (FOR MAPBOX)
+  geometry: {
+    type: {
+      type: String,
+      enum: ["Point"],
+    },
+    coordinates: {
+      type: [Number],
+    },
+  },
+
   reviews: [
     {
-      type : Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Review",
     },
   ],
+
   owner: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -49,8 +62,6 @@ listingSchema.post("findOneAndDelete", async (listing) => {
   }
 });
 
-
-// ✅ FIX IS HERE
 const Listing = mongoose.model("Listing", listingSchema);
 
 module.exports = Listing;
