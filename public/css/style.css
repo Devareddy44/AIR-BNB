@@ -6,13 +6,17 @@ body{
 }
 
 .container{
-  float: 1;
+  flex: 1;
 }
 
-/*Navbar*/
+
+/* Navbar */
+
 .navbar{
   height: 5rem;
   background-color: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s ease;
 }
 
 .fa-compass{
@@ -20,9 +24,18 @@ body{
   font-size: 2rem;
 }
 
+/* Navbar link hover */
+
 .nav-link{
   color: #222222 !important;
+  transition: color 0.2s ease;
 }
+
+.nav-link:hover{
+  color: #fe424d !important;
+}
+
+/* Footer */
 
 .f-info-links a{
   text-decoration: none;
@@ -34,8 +47,8 @@ body{
 }
 
 .f-info-links ,
- .f-info-socials,
- .f-info-brand{
+.f-info-socials,
+.f-info-brand{
   width: 100%;
   display: flex;
   align-items: center;
@@ -43,8 +56,16 @@ body{
 }
 
 .f-info-socials i{
-  margin-right: 1rem;
   font-size: 1.2rem;
+  margin-right: 1rem;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.f-info-socials i:hover{
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 .f-info{
@@ -57,60 +78,121 @@ body{
   align-items: space-evenly;
 }
 
-/*Cards*/
+/* Cards */
+
 .listing-card{
   border: none !important;
   margin-bottom: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
 .card-img-top{
-  border-radius: 1rem !important;
   width: 100% !important;
-  object-fit: cover !important;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.listing-card:hover .card-img-top{
+  transform: scale(1.05);
 }
 
 .card-body{
-  padding: 0 !important;
+  padding: 0.5rem 0.2rem !important;
 }
 
-.card-text p{
-  font-weight: 400 !important;
+.card-text{
+  font-size: 0.95rem;
 }
 
 .listing-link{
   text-decoration: none;
+  color: #222;
 }
 
-/* Card Effect */
+/* Card Hover Effect */
+
+/* Image Overlay Effect */
+
 .card-img-overlay{
   opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.card-img-overlay:hover{
-  opacity: 0.2;
+.listing-card:hover .card-img-overlay{
+  opacity: 0.15;
   background-color: white;
+  border-radius: 1rem;
 }
 
-/* New Page*/
+/* New Page */
+
 .add-btn{
   background-color: #fe424d !important;
   border: none !important;
 }
 
-/* Edit Page*/
+
+/* Edit Page */
+
 .edit-btn{
   background-color: #fe424d !important;
   border: none !important;
 }
 
-/*show page */
+
+/* Show Page */
+
 .show-img{
-  height: 30vh;
+  height: 35vh;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-/* MAP */
+/* Map */
+
 #map {
   height: 400px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
 }
+
+
+/* Flash Message */
+
+.flash-msg{
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: 40%;
+  text-align: center;
+}
+
+/* Listing grid spacing */
+
+.row{
+  row-gap: 2rem;
+}
+
+/* Show page spacing */
+
+.show-card{
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+

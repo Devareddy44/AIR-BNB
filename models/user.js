@@ -15,6 +15,11 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose, {
+  errorMessages: {
+    IncorrectUsernameError: "User not registered",
+    IncorrectPasswordError: "Wrong password"
+  }
+});
 
 module.exports = mongoose.model("User", userSchema);
