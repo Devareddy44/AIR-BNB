@@ -74,17 +74,23 @@ module.exports.updateListing = async (req, res) => {
 
   let listing = await Listing.findById(id);
 
-  // update fields
+  if (!listing) {
+    req.flash("error", "Listing not found");
+    return res.redirect("/listings");
+  }
+
+  // update listing fields
   Object.assign(listing, req.body.listing);
 
-  // re-geocode if location changed
-  let response = await geocodingClient.forwardGeocode({
+  // ⭐ regenerate coordinates for new location
+  const geoResponse = await geocodingClient.forwardGeocode({
     query: `${listing.location}, ${listing.country}`,
     limit: 1
   }).send();
 
-  listing.geometry = response.body.features[0].geometry;
+  listing.geometry = geoResponse.body.features[0].geometry;
 
+  // update image if uploaded
   if (req.file) {
     listing.image = {
       url: req.file.path,
@@ -95,7 +101,7 @@ module.exports.updateListing = async (req, res) => {
   await listing.save();
 
   req.flash("success", "Listing Updated!");
-  res.redirect(`/listings/${id}`);
+  res.redirect(`/listings/${listing._id}`);
 };
 
 
